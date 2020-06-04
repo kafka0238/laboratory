@@ -1,0 +1,50 @@
+.container {
+    width: 300px;
+    margin: 40px;
+    padding: 30px;
+    background: #ffffff;
+}
+
+.container__title {
+    margin-bottom: 20px;
+}
+
+.form-auth {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-auth__label {
+    margin-bottom: 5px;
+}
+
+.form-auth__input {
+    font-size: 15px;
+    margin-bottom: 20px;
+    padding: 8px 0 8px 10px;
+    border: 1px solid #cecece;
+    border-radius: 2px;
+    font-weight: 400;
+}
+
+.form-auth__action-section {
+    display: flex;
+    justify-content: center;
+}
+
+.action-section__forgot-password {
+    align-self: center;
+    font-size: 12px;
+    padding-left: 5px;
+}
+
+.action-section__button-auth {
+    border: none;
+    padding: 12px 25px;
+    background: #d8dbe4;
+    cursor: pointer;
+}
+
+.action-section__button-auth:hover {
+    background: #f2f3f7;
+}

@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ asset('style/style.css') }}" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% block header %}
+    <header>
+        <div class="logo">
+{#            <img class="logo-img" alt="logo" src="{{ absolute_url(asset('image/FM_logo_white.svg')) }}">#}
+            <span class="logo-name">Лаборатория 2000</span>
+        </div>
+    </header>
+{% endblock %}
+{% block body %}{% endblock %}
+{% block footer %}
+    <footer>
+            <span class="copyright-text">
+                ООО "Лаборатория 2000"
+            </span>
+    </footer>
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
 </html>
