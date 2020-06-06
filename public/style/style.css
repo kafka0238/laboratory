@@ -68,7 +68,17 @@ footer {
 .wrap {
     display: flex;
     flex: 1 0 auto;
-    justify-content: center;
     align-items: center;
+    background: #f2f3f7;
+}
+
+.button {
+    border: none;
+    padding: 12px 25px;
+    background: #d8dbe4;
+    cursor: pointer;
+}
+
+.button:hover {
     background: #f2f3f7;
 }

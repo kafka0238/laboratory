@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrderController!{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('style/order.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+<div class="wrap">
+    <div class="tab">
+        {% block links %}
+            {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+        {% endblock %}
+    </div>
+    <div class="container">
+    <h1>Hello {{ controller_name }}! ✅</h1>
+        <a href="{{ path('order-create') }}" class="button">Добавить</a>
+
+        <table class="simple-table">
+            <tr class="align-left">
+                <th>Номер заказа</th>
+                <th>Заказчик</th>
+                <th>Дата</th>
+                <th>Дополнительно</th>
+                <th></th>
+            </tr>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.customer }}</td>
+                    <td>{{ order.date|date('d.m.Y') }}</td>
+                    <td>{{ order.additionally }}</td>
+                    <td><a href="{{ path('order-view', { 'id' : order.id } ) }}" class="button">Просмотр</a></td>
+{#                    <td><a href="{{ path('account_detail',{id: user.id}) }}">{{ user.login }}</a></td>#}
+{#                    <td>{{ user.expiration|date('d.m.Y') }}</td>#}
+{#                    <td>{% if user.getAccessExpiration() is not null %}#}
+{#                            {% set expiration = ((user.getAccessExpiration()|date('U') - date().timestamp)/86400)|round %}#}
+{#                            {{ expiration }} дней#}
+{#                        {% else %}#}
+{#                            Не установлен#}
+{#                        {% endif %}#}
+{#                    </td>#}
+                </tr>
+            {% endfor %}
+        </table>
+</div>
+</div>
+{% endblock %}

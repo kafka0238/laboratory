@@ -1,0 +1,30 @@
+.tab{
+    box-shadow: 0 0 5px rgba(0,0,0,0.25);
+    background-color: white;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 250px;
+}
+
+.tab > a{
+    list-style: none;
+    line-height: 50px;
+    padding: 10px 20px;
+    font-size: 15pt;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+}
+
+.tab > a:hover{
+    background-color: #f3f3f3;
+}
+
+.tab > a.selected{
+    background-color: #d8d8d8;
+}
+
+.tab a.right{
+    margin-left: auto;
+}
