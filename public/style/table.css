@@ -13,12 +13,20 @@
     background-color: white !important;
 }
 
-.simple-table tr:nth-child(odd), .simple-table tr:last-child{
+.simple-table tr:nth-child(even){
     background-color: #f1f1f1;
     border-top: 1px solid #d5d5d5;
     border-bottom: 1px solid #d5d5d5;
 }
 
-.simple-table td:last-child{
-     width: 80px;
+.simple-table tr:last-child{
+    border-bottom: 1px solid #d5d5d5;
+}
+
+.simple-table td:first-child, .simple-table th:first-child{
+     width: 200px;
+ }
+
+.simple-table td:last-child, .simple-table th:last-child{
+     width: 100px;
  }

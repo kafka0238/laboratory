@@ -2,77 +2,79 @@
 
 namespace App\Controller;
 
-use App\Entity\Order;
-use App\Form\OrderType;
-use App\Repository\OrderRepository;
+use App\Entity\Container;
+use App\Form\ContainerType;
+use App\Repository\ContainerRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
-class OrderController extends AbstractController
+class ContainerController extends AbstractController
 {
     /**
-     * @Route("/", name="order")
-     * @param OrderRepository $orderRepository
+     * @Route("/container", name="container")
+     * @param ContainerRepository $containerRepository
      * @return Response
      */
-    public function index(OrderRepository $orderRepository)
+    public function index(ContainerRepository $containerRepository)
     {
-        $orders = $orderRepository->findAll();
+        $containers = $containerRepository->findAll();
 
-        return $this->render('order/index.html.twig', [
+        return $this->render('container/index.html.twig', [
             'controller_name' => 'OrderController',
-            'orders' => $orders,
+            'orders' => $containers,
         ]);
     }
 
+
+
     /**
-     * @Route("/order/create", name="order-create")
+     * @Route("/order/create", name="container-create")
      * @param Request $request
      * @return RedirectResponse|Response
      */
     public function create(Request $request)
     {
-        $order = new Order();
-        $form = $this->createForm(OrderType::class, $order);
+        $order = new Container();
+        $form = $this->createForm(ContainerType::class, $order);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($order);
             $entityManager->flush();
-            return $this->redirectToRoute('order');
+            return $this->redirectToRoute('container');
         }
 
-        return $this->render('order/create.html.twig', [
+        return $this->render('container/create.html.twig', [
             'controller_name' => 'OrderController',
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/order/view/{id}", name="order-view")
+     * @Route("/container/view/{id}", name="container-view")
      * @param $id
      * @param Request $request
-     * @param OrderRepository $orderRepository
+     * @param ContainerRepository $containerRepository
      * @return RedirectResponse|Response
      */
-    public function view($id, Request $request, OrderRepository $orderRepository)
+    public function view($id, Request $request, ContainerRepository $containerRepository)
     {
-        $order = $orderRepository
+        $container = $containerRepository
             ->find($id);
-        $form = $this->createForm(OrderType::class, $order);
+        $form = $this->createForm(ContainerType::class, $container);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
-            return $this->redirectToRoute('order');
+            return $this->redirectToRoute('container');
         }
 
-        return $this->render('order/view.html.twig', [
+        return $this->render('container/view.html.twig', [
             'controller_name' => 'OrderController',
             'form' => $form->createView(),
         ]);

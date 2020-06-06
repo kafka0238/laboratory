@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Контейнеры{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('style/order.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h1>Контейнеры</h1>
+            <a href="{{ path('container-create') }}" class="button">Добавить</a>
+
+            <table class="simple-table">
+                <tr class="align-left">
+                    <th>Номер контейнера</th>
+                    <th>Название</th>
+                    <th>Объем</th>
+                    <th>Дополнительно</th>
+                    <th></th>
+                </tr>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.name }}</td>
+                        <td>{{ order.volume }}</td>
+                        <td>{{ order.additionally }}</td>
+                        <td><a href="{{ path('container-view', { 'id' : order.id } ) }}" class="button">Просмотр</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
