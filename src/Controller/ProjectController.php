@@ -50,7 +50,7 @@ class ProjectController extends AbstractController
     }
 
     /**
-     * @Route("/order/{order_id}/project/view/{id}", name="project-view")
+     * @Route("/order/{id_order}/project/view/{id}", name="project-view")
      * @param $id_order
      * @param $id
      * @param Request $request
@@ -77,9 +77,7 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute('order-view', ['id'=>$id_order]);
         }
 
-        $projects = $projectRepository->findBy(['id_order' => $project->getId()]);
-
-        return $this->render('order/view.html.twig', [
+        return $this->render('project/view.html.twig', [
             'form' => $form->createView(),
         ]);
     }

@@ -22,7 +22,7 @@ class OrderType extends AbstractType
             ])
             ->add('date', DateType::class, [
                 'required' => true,
-                'label'  => 'Дата создания:',
+                'label'  => 'Дата:',
             ])
             ->add('additionally', TextareaType::class, [
                 'required' => false,
