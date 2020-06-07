@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Создание случая{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h3 class="container__title">Создание случая:</h3>
+            {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
+            {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.id_project, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.id_project) }}
+            {{ form_widget(form.id_project, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.id_laboratory, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.id_laboratory, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.id_laboratory) }}
+
+            {{ form_label(form.name, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.name) }}
+
+            {{ form_label(form.collection_date, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.collection_date, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.collection_date) }}
+
+            {{ form_label(form.processing_date, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.processing_date, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.processing_date) }}
+
+            {{ form_label(form.clinical_date, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.clinical_date, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.clinical_date) }}
+
+            {{ form_label(form.additionally, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.additionally, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.additionally) }}
+
+            <div class="form-auth__action-section">
+                {{ form_widget(form.submit, {'label': 'Создать', 'attr': {'class': 'action-section__button-auth'}}) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('js/error.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}

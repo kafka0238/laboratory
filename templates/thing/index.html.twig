@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Случаи{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('style/order.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+<div class="wrap">
+    <div class="tab">
+        {% block links %}
+            {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+        {% endblock %}
+    </div>
+    <div class="container">
+    <h1>Случаи</h1>
+        <a href="{{ path('thing-create') }}" class="button">Добавить</a>
+
+        <table class="simple-table">
+            <tr class="align-left">
+                <th>Номер случая</th>
+                <th>Проект</th>
+                <th>Лаборатория</th>
+                <th>Название</th>
+                <th>Дата сбора</th>
+                <th>Дата обработки</th>
+                <th>Клинические данные</th>
+                <th>Дополнительно</th>
+                <th></th>
+            </tr>
+            {% for thing in things %}
+                <tr>
+                    <td>{{ thing.id }}</td>
+                    <td>{{ thing.idProject }}</td>
+                    <td>{{ thing.idLaboratory }}</td>
+                    <td>{{ thing.name }}</td>
+                    <td>{{ thing.collectionDate|date('d.m.Y') }}</td>
+                    <td>{{ thing.processingDate|date('d.m.Y') }}</td>
+                    <td>{{ thing.clinicalDate }}</td>
+                    <td>{{ thing.additionally }}</td>
+                    <td><a href="{{ path('thing-view', { 'id' : thing.id } ) }}" class="button">Просмотр</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+</div>
+</div>
+{% endblock %}
