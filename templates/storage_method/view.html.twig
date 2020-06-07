@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Просмотр контейнера{% endblock %}
+{% block title %}Просмотр метода хранения{% endblock %}
 {% block stylesheets %}
     <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
@@ -15,7 +15,7 @@
             {% endblock %}
         </div>
         <div class="container">
-            <h3 class="container__title">Просмотр контейнера:</h3>
+            <h3 class="container__title">Просмотр метода хранения:</h3>
             {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
             {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
             {{ form_errors(form) }}
@@ -24,16 +24,16 @@
             {{ form_errors(form.name) }}
             {{ form_widget(form.name, {'attr': {'class': 'form-auth__input'}}) }}
 
-            {{ form_label(form.volume, null, {'label_attr': {'class': 'form-auth__label'}}) }}
-            {{ form_errors(form.volume) }}
-            {{ form_widget(form.volume, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_label(form.temp, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.temp) }}
+            {{ form_widget(form.temp, {'attr': {'class': 'form-auth__input'}}) }}
 
-            {{ form_label(form.additionally, null, {'label_attr': {'class': 'form-auth__label'}}) }}
-            {{ form_widget(form.additionally, {'attr': {'class': 'form-auth__input'}}) }}
-            {{ form_errors(form.additionally) }}
+            {{ form_label(form.features, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.features, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.features) }}
 
             <div class="form-auth__action-section">
-                {{ form_widget(form.request, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
+                {{ form_widget(form.submit, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
             </div>
             {{ form_end(form) }}
         </div>

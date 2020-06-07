@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Методы хранения{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('style/order.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h1>Методы хранения</h1>
+            <a href="{{ path('storage-method-create') }}" class="button">Добавить</a>
+
+            <table class="simple-table">
+                <tr class="align-left">
+                    <th>Номер метода</th>
+                    <th>Название</th>
+                    <th>Температурный режим</th>
+                    <th>Особенности</th>
+                    <th></th>
+                </tr>
+                {% for storageMethod in storageMethods %}
+                    <tr>
+                        <td>{{ storageMethod.id }}</td>
+                        <td>{{ storageMethod.name }}</td>
+                        <td>{{ storageMethod.temp }}</td>
+                        <td>{{ storageMethod.features }}</td>
+                        <td><a href="{{ path('storage-method-view', { 'id' : storageMethod.id } ) }}" class="button">Просмотр</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}
