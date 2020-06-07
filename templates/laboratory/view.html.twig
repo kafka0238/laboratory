@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Просмотр лаборатории{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h3 class="container__title">Просмотр лаборатории:</h3>
+            {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
+            {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.pm, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.pm) }}
+            {{ form_widget(form.pm, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.salary_pm, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.salary_pm) }}
+            {{ form_widget(form.salary_pm, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.pi, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.pi, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.pi) }}
+
+            {{ form_label(form.salary_pi, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.salary_pi, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.salary_pi) }}
+
+            {{ form_label(form.location, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.location, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.location) }}
+
+            {{ form_label(form.city, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.city, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.city) }}
+
+            {{ form_label(form.cost, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.cost, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.cost) }}
+
+            <div class="form-auth__action-section">
+                {{ form_widget(form.submit, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('js/error.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}
