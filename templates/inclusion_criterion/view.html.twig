@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Просмотр лаборатории{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h3 class="container__title">Просмотр лаборатории:</h3>
+            {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
+            {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.nationality, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.nationality) }}
+            {{ form_widget(form.nationality, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.smoking, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.smoking) }}
+            {{ form_widget(form.smoking, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.alcohol, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.alcohol, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.alcohol) }}
+
+            {{ form_label(form.disease, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.disease, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.disease) }}
+
+            {{ form_label(form.subtype, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.subtype, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.subtype) }}
+
+            {{ form_label(form.stage, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.stage, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.stage) }}
+
+            {{ form_label(form.treatment, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.treatment, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.treatment) }}
+
+            {{ form_label(form.chronic_disease, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.chronic_disease, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.chronic_disease) }}
+
+            {{ form_label(form.additionally, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.additionally, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.additionally) }}
+
+            <div class="form-auth__action-section">
+                {{ form_widget(form.submit, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('js/error.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}
