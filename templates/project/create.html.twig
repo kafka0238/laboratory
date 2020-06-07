@@ -1,10 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Создание заказа{% endblock %}
+{% block title %}Создание проекта{% endblock %}
 {% block stylesheets %}
     <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
-    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
 {% endblock %}
 
@@ -16,19 +15,27 @@
             {% endblock %}
         </div>
         <div class="container">
-            <h3 class="container__title">Создание заказа:</h3>
+            <h3 class="container__title">Создание проекта:</h3>
             {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
             {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
             {{ form_errors(form) }}
-            {{ form_label(form.customer, null, {'label_attr': {'class': 'form-auth__label'}}) }}
-            {{ form_errors(form.customer) }}
-            {{ form_widget(form.customer, {'attr': {'class': 'form-auth__input'}}) }}
-            {{ form_label(form.date, null, {'label_attr': {'class': ''}}) }}
-            {{ form_widget(form.date, {'attr': {'class': 'form-auth__input'}}) }}
-            {{ form_errors(form.date) }}
+
+            {{ form_label(form.name, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.name) }}
+            {{ form_widget(form.name, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.disease, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.disease, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.disease) }}
+
+            {{ form_label(form.id_inclusion_criterion, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.id_inclusion_criterion, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.id_inclusion_criterion) }}
+
             {{ form_label(form.additionally, null, {'label_attr': {'class': 'form-auth__label'}}) }}
             {{ form_widget(form.additionally, {'attr': {'class': 'form-auth__input'}}) }}
             {{ form_errors(form.additionally) }}
+
             <div class="form-auth__action-section">
                 {{ form_widget(form.request, {'label': 'Создать', 'attr': {'class': 'action-section__button-auth'}}) }}
             </div>

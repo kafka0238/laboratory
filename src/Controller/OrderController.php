@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Order;
 use App\Form\OrderType;
 use App\Repository\OrderRepository;
+use App\Repository\ProjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ class OrderController extends AbstractController
     /**
      * @Route("/", name="order")
      * @param OrderRepository $orderRepository
+     * @param ProjectRepository $projectRepository
      * @return Response
      */
     public function index(OrderRepository $orderRepository)
@@ -57,9 +59,10 @@ class OrderController extends AbstractController
      * @param $id
      * @param Request $request
      * @param OrderRepository $orderRepository
+     * @param ProjectRepository $projectRepository
      * @return RedirectResponse|Response
      */
-    public function view($id, Request $request, OrderRepository $orderRepository)
+    public function view($id, Request $request, OrderRepository $orderRepository, ProjectRepository $projectRepository)
     {
         $order = $orderRepository
             ->find($id);
@@ -72,8 +75,11 @@ class OrderController extends AbstractController
             return $this->redirectToRoute('order');
         }
 
+        $projects = $projectRepository->findBy(['id_order' => $order->getId()]);
+
         return $this->render('order/view.html.twig', [
-            'controller_name' => 'OrderController',
+            'id_order' => $id,
+            'projects' => $projects,
             'form' => $form->createView(),
         ]);
     }

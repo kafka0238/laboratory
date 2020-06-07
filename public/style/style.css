@@ -78,6 +78,7 @@ footer {
     background: #d8dbe4;
     cursor: pointer;
     height: 20px;
+    text-align: center;
 }
 
 .button:hover {

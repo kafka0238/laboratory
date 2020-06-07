@@ -37,6 +37,6 @@
         {% else %}
             {% set link = v.custom %}
         {% endif %}
-        <a href="{{ path(link) }}" class="{% if v.class|default(null) %}{{ v.class }}{% endif %} {% if route_name == k %}selected{% endif %}">{{ v.name }}</a>
+        <a href="{{ path(link) }}" class="{% if v.class|default(null) %}{{ v.class }}{% endif %} {% if route_name in k %}selected{% endif %}">{{ v.name }}</a>
     {% endif %}
 {% endfor %}

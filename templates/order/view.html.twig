@@ -4,6 +4,7 @@
 {% block stylesheets %}
     <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
 {% endblock %}
 
@@ -32,6 +33,29 @@
                 {{ form_widget(form.request, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
             </div>
             {{ form_end(form) }}
+        </div>
+        <div class="container">
+            <h3 class="container__title">Проекты заказа:</h3>
+            <a href="{{ path('project-create', { 'id_order' : id_order }) }}" class="button">Добавить</a>
+
+            <table class="simple-table">
+                <tr class="align-left">
+                    <th>Номер проекта</th>
+                    <th>Заболевание</th>
+                    <th>Критерий включения</th>
+                    <th>Дополнительно</th>
+                    <th></th>
+                </tr>
+                {% for project in projects %}
+                    <tr>
+                        <td>{{ project.id }}</td>
+                        <td>{{ project.disease }}</td>
+                        <td>{{ project.idInclusionCriterion }}</td>
+                        <td>{{ project.additionally }}</td>
+                        <td><a href="{{ path('order-view', { 'id' : project.id } ) }}" class="button">Просмотр</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
     </div>
 {% endblock %}
