@@ -68,7 +68,6 @@ footer {
 .wrap {
     display: flex;
     flex: 1 0 auto;
-    align-items: center;
     background: #f2f3f7;
 }
 
