@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Материалы{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('style/order.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/table.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h1>Материалы</h1>
+            <a href="{{ path('material-create') }}" class="button">Добавить</a>
+
+            <table class="simple-table">
+                <tr class="align-left">
+                    <th>Номер материала</th>
+                    <th>Тип</th>
+                    <th>Локация</th>
+                    <th></th>
+                </tr>
+                {% for material in materials %}
+                    <tr>
+                        <td>{{ material.id }}</td>
+                        <td>{{ material.type }}</td>
+                        <td>{{ material.location }}</td>
+                        <td><a href="{{ path('material-view', { 'id' : material.id } ) }}" class="button">Просмотр</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

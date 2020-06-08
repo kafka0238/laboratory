@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Просмотр способа хранения{% endblock %}
+{% block title %}Просмотр контейнера{% endblock %}
 {% block stylesheets %}
     <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
     <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
@@ -15,22 +15,18 @@
             {% endblock %}
         </div>
         <div class="container">
-            <h3 class="container__title">Просмотр способа хранения:</h3>
+            <h3 class="container__title">Просмотр контейнера:</h3>
             {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
             {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
             {{ form_errors(form) }}
 
-            {{ form_label(form.name, null, {'label_attr': {'class': 'form-auth__label'}}) }}
-            {{ form_errors(form.name) }}
-            {{ form_widget(form.name, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_label(form.type, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.type) }}
+            {{ form_widget(form.type, {'attr': {'class': 'form-auth__input'}}) }}
 
-            {{ form_label(form.temp, null, {'label_attr': {'class': 'form-auth__label'}}) }}
-            {{ form_errors(form.temp) }}
-            {{ form_widget(form.temp, {'attr': {'class': 'form-auth__input'}}) }}
-
-            {{ form_label(form.features, null, {'label_attr': {'class': 'form-auth__label'}}) }}
-            {{ form_widget(form.features, {'attr': {'class': 'form-auth__input'}}) }}
-            {{ form_errors(form.features) }}
+            {{ form_label(form.location, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.location) }}
+            {{ form_widget(form.location, {'attr': {'class': 'form-auth__input'}}) }}
 
             <div class="form-auth__action-section">
                 {{ form_widget(form.submit, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
