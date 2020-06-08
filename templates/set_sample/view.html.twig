@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Создание набора образцов{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h3 class="container__title">Просмотр набора образцов:</h3>
+            {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
+            {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.lable, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.lable) }}
+            {{ form_widget(form.lable, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.id_material, null, {'label_attr': {'class': ''}}) }}
+            {{ form_widget(form.id_material, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.id_material) }}
+
+            {{ form_label(form.id_container, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.id_container, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.id_container) }}
+
+            {{ form_label(form.id_storage_method, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.id_storage_method, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.id_storage_method) }}
+
+            {{ form_label(form.id_laboratory, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_widget(form.id_laboratory, {'attr': {'class': 'form-auth__input'}}) }}
+            {{ form_errors(form.id_laboratory) }}
+
+            <div class="form-auth__action-section">
+                {{ form_widget(form.submit, {'lable': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('js/error.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}

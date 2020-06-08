@@ -6,6 +6,7 @@ use App\Entity\Thing;
 use App\Form\ThingType;
 use App\Repository\LaboratoryRepository;
 use App\Repository\ProjectRepository;
+use App\Repository\SetSampleRepository;
 use App\Repository\ThingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -73,11 +74,12 @@ class ThingController extends AbstractController
      * @param $id
      * @param Request $request
      * @param ThingRepository $thingRepository
+     * @param SetSampleRepository $setSampleRepository
      * @param ProjectRepository $projectRepository
      * @param LaboratoryRepository $laboratoryRepository
      * @return RedirectResponse|Response
      */
-    public function view($id, Request $request, ThingRepository $thingRepository, ProjectRepository $projectRepository, LaboratoryRepository $laboratoryRepository)
+    public function view($id, Request $request, ThingRepository $thingRepository, SetSampleRepository $setSampleRepository, ProjectRepository $projectRepository, LaboratoryRepository $laboratoryRepository)
     {
         $thing = $thingRepository->find($id);
 
@@ -105,9 +107,11 @@ class ThingController extends AbstractController
             return $this->redirectToRoute('thing');
         }
 
+        $setSamples = $setSampleRepository->findBy(['id_thing' => $thing->getId()]);
 
         return $this->render('thing/view.html.twig', [
-            'id_order' => $id,
+            'id_thing' => $id,
+            'set_samples' => $setSamples,
             'form' => $form->createView(),
         ]);
     }

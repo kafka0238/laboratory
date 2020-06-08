@@ -54,6 +54,32 @@
             </div>
             {{ form_end(form) }}
         </div>
+        <div class="container">
+            <h3 class="container__title">Наборы образцов:</h3>
+
+            <table class="simple-table">
+                <tr class="align-left">
+                    <th>Номер набора</th>
+                    <th>Этикетка</th>
+                    <th>Материал</th>
+                    <th>Контейнер</th>
+                    <th>Способ хранения</th>
+                    <th>Лаборатория</th>
+                    <th></th>
+                </tr>
+                {% for set_sample in set_samples %}
+                    <tr>
+                        <td>{{ set_sample.id }}</td>
+                        <td>{{ set_sample.idMaterial }}</td>
+                        <td>{{ set_sample.idContainer }}</td>
+                        <td>{{ set_sample.idStorageMethod }}</td>
+                        <td>{{ set_sample.idLaboratory }}</td>
+                        <td><a href="{{ path('set_sample-view', { 'id' : set_sample.id, 'id_thing' : id_thing } ) }}" class="button">Просмотр</a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <a href="{{ path('set_sample-create', { 'id_thing' : id_thing }) }}" class="button">Добавить</a>
+        </div>
     </div>
 {% endblock %}
 
