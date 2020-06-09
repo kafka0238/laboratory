@@ -44,6 +44,7 @@ class UserCreateCommand extends Command
             ->setHelp($this->getCommandHelp())
             ->addArgument('username', InputArgument::OPTIONAL, 'The username of the new user')
             ->addArgument('password', InputArgument::OPTIONAL, 'The plain password of the new user')
+            ->addArgument('role', InputArgument::OPTIONAL, 'The role of the new user')
         ;
     }
 
@@ -71,7 +72,7 @@ class UserCreateCommand extends Command
      */
     protected function interact(InputInterface $input, OutputInterface $output)
     {
-        if (null !== $input->getArgument('username') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
+        if (null !== $input->getArgument('username') && null !== $input->getArgument('role') && null !== $input->getArgument('password') && null !== $input->getArgument('email') && null !== $input->getArgument('full-name')) {
             return;
         }
 
@@ -99,6 +100,13 @@ class UserCreateCommand extends Command
         if (null === $password) {
             $password = $this->io->askHidden('Password (your type will be hidden)');
             $input->setArgument('password', $password);
+        }
+
+        // Ask for the password if it's not defined
+        $role = $input->getArgument('role');
+        if (null === $role) {
+            $role = $this->io->askHidden('Role (your type will be hidden)');
+            $input->setArgument('role', $role);
         }
     }
 
