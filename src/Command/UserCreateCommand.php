@@ -110,11 +110,12 @@ class UserCreateCommand extends Command
     {
         $username = $input->getArgument('username');
         $plainPassword = $input->getArgument('password');
+        $role = $input->getArgument('role');
 
         // create the user and encode its password
         $user = new User();
         $user->setLogin($username);
-        $user->setRoles(['ROLE_LABORANT']);
+        $user->setRoles([$role]);
 
         // See https://symfony.com/doc/current/security.html#c-encoding-passwords
         $encodedPassword = $this->passwordEncoder->encodePassword($user, $plainPassword);
