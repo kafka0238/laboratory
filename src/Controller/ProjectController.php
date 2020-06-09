@@ -44,8 +44,18 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute('order-view', ['id'=>$id_order]);
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('project/create.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -77,8 +87,18 @@ class ProjectController extends AbstractController
             return $this->redirectToRoute('order-view', ['id'=>$id_order]);
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('project/view.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }

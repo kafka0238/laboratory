@@ -23,10 +23,20 @@ class OrderController extends AbstractController
     public function index(OrderRepository $orderRepository)
     {
         $orders = $orderRepository->findAll();
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
 
         return $this->render('order/index.html.twig', [
             'controller_name' => 'OrderController',
             'orders' => $orders,
+            'is_show' => $isShow,
         ]);
     }
 
@@ -47,10 +57,20 @@ class OrderController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('order');
         }
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
 
         return $this->render('order/create.html.twig', [
             'controller_name' => 'OrderController',
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -74,6 +94,15 @@ class OrderController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('order');
         }
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
 
         $projects = $projectRepository->findBy(['id_order' => $order->getId()]);
 
@@ -81,6 +110,7 @@ class OrderController extends AbstractController
             'id_order' => $id,
             'projects' => $projects,
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }

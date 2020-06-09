@@ -36,7 +36,13 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/$, role: ROLE_ADMIN }
+        - { path: ^/thing, roles: ROLE_LABORANT }
+        - { path: ^/$, role: ROLE_MANAGER }
         - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/*, role: ROLE_ADMIN }
+        - { path: ^/logout$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/material, roles: ROLE_ADMIN }
+        - { path: ^/inclusion-criterion, roles: ROLE_MANAGER }
+        - { path: ^/storage-method, roles: ROLE_ADMIN }
+        - { path: ^/laboratory, roles: ROLE_ADMIN }
+        - { path: ^/container, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

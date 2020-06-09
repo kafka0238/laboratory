@@ -22,8 +22,18 @@ class MaterialController extends AbstractController
     {
         $materials = $materialRepository->findAll();
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('material/index.html.twig', [
             'materials' => $materials,
+            'is_show' => $isShow,
         ]);
     }
 
@@ -47,8 +57,18 @@ class MaterialController extends AbstractController
             return $this->redirectToRoute('material');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('material/create.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -72,8 +92,18 @@ class MaterialController extends AbstractController
             return $this->redirectToRoute('material');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('material/view.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }

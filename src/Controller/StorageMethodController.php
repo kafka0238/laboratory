@@ -22,8 +22,18 @@ class StorageMethodController extends AbstractController
     {
         $storageMethods = $storageMethodRepository->findAll();
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('storage_method/index.html.twig', [
             'storageMethods' => $storageMethods,
+            'is_show' => $isShow,
         ]);
     }
 
@@ -47,8 +57,18 @@ class StorageMethodController extends AbstractController
             return $this->redirectToRoute('storage-method');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('storage_method/create.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -72,8 +92,18 @@ class StorageMethodController extends AbstractController
             return $this->redirectToRoute('storage-method');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('storage_method/view.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }

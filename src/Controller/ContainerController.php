@@ -22,9 +22,20 @@ class ContainerController extends AbstractController
     {
         $containers = $containerRepository->findAll();
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
+
         return $this->render('container/index.html.twig', [
             'controller_name' => 'OrderController',
             'orders' => $containers,
+            'is_show' => $isShow,
         ]);
     }
 
@@ -40,6 +51,15 @@ class ContainerController extends AbstractController
         $order = new Container();
         $form = $this->createForm(ContainerType::class, $order);
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
@@ -51,6 +71,7 @@ class ContainerController extends AbstractController
         return $this->render('container/create.html.twig', [
             'controller_name' => 'OrderController',
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -74,9 +95,19 @@ class ContainerController extends AbstractController
             return $this->redirectToRoute('container');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('container/view.html.twig', [
             'controller_name' => 'OrderController',
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }

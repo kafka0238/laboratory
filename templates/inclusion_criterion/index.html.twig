@@ -12,7 +12,7 @@
     <div class="wrap">
         <div class="tab">
             {% block links %}
-                {% include 'menu.html.twig' with {'selected':'order','isAdmin':true} %}
+                {% include 'menu.html.twig' with {'selected':'order','isShow':is_show} %}
             {% endblock %}
         </div>
         <div class="container">

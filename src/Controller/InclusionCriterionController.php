@@ -22,8 +22,18 @@ class InclusionCriterionController extends AbstractController
     {
         $inclusionCriterions = $inclusionCriterionRepository->findAll();
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('inclusion_criterion/index.html.twig', [
             'inclusionCriterions' => $inclusionCriterions,
+            'is_show' => $isShow,
         ]);
     }
 
@@ -47,8 +57,18 @@ class InclusionCriterionController extends AbstractController
             return $this->redirectToRoute('inclusion-criterion');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('inclusion_criterion/create.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -72,8 +92,18 @@ class InclusionCriterionController extends AbstractController
             return $this->redirectToRoute('inclusion-criterion');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('inclusion_criterion/view.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }

@@ -84,11 +84,21 @@ class AppUserAuthenticator extends AbstractFormLoginAuthenticator implements Pas
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['login' => $request->request->get('login')]);
+        if(in_array('ROLE_LABORANT', $user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('thing'));
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('order'));
+        }
         if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('view_order'));
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['login' => $request->request->get('login')]);
+        if(in_array('ROLE_LABORANT', $user->getRoles())) {
+            return new RedirectResponse($this->urlGenerator->generate('thing'));
+        }
+        return new RedirectResponse($this->urlGenerator->generate('order'));
     }
 
     protected function getLoginUrl()

@@ -1,39 +1,39 @@
-{% set isAdmin = isAdmin|default(false) %}
+{% set isShow = isShow|default(false) %}
 {% set pages =
     {
         'order':
         {
             'name' : 'Заказы',
-            'condition': isAdmin,
+            'condition': isShow == 2 or isShow == 1,
         },'inclusion-criterion':
         {
             'name' : 'Критерии включения',
-            'condition': isAdmin,
+            'condition': isShow == 2 or isShow == 1,
         },'thing':
         {
             'name' : 'Случай',
-            'condition': isAdmin,
+            'condition':  isShow == 3 or isShow == 1,
         },'container':
         {
             'name' : 'Контейнер',
-            'condition': isAdmin,
+            'condition': isShow == 1,
         },'storage-method':
         {
             'name' : 'Способ хранения',
-            'condition': isAdmin,
+            'condition': isShow == 1,
         },'material':
         {
             'name' : 'Материал',
-            'condition': isAdmin,
+            'condition': isShow == 1,
         },'laboratory':
         {
             'name' : 'Лаборатория',
-            'condition': isAdmin,
+            'condition': isShow == 1,
         },
         'app_logout':
         {
             'name' : 'Выход',
-            'condition': isAdmin,
+            'condition': isShow,
         }
     }
 %}

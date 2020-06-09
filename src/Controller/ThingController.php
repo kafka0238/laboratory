@@ -25,8 +25,18 @@ class ThingController extends AbstractController
     {
         $things = $thingRepository->findAll();
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('thing/index.html.twig', [
             'things' => $things,
+            'is_show' => $isShow,
         ]);
     }
 
@@ -64,8 +74,18 @@ class ThingController extends AbstractController
             return $this->redirectToRoute('thing');
         }
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('thing/create.html.twig', [
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 
@@ -109,10 +129,20 @@ class ThingController extends AbstractController
 
         $setSamples = $setSampleRepository->findBy(['id_thing' => $thing->getId()]);
 
+        $user = $this->getUser();
+
+        if(in_array('ROLE_ADMIN', $user->getRoles())) {
+            $isShow = 1;
+        } elseif(in_array('ROLE_MANAGER', $user->getRoles())) {
+            $isShow = 2;
+        } elseif(in_array('ROLE_LABORANT', $user->getRoles())) {
+            $isShow = 3;
+        }
         return $this->render('thing/view.html.twig', [
             'id_thing' => $id,
             'set_samples' => $setSamples,
             'form' => $form->createView(),
+            'is_show' => $isShow,
         ]);
     }
 }
