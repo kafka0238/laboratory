@@ -1,7 +1,11 @@
 {% set isShow = isShow|default(false) %}
 {% set pages =
     {
-        'order':
+        'user':
+        {
+            'name' : 'Пользователи',
+            'condition': isShow == 1,
+        },'order':
         {
             'name' : 'Заказы',
             'condition': isShow == 2 or isShow == 1,

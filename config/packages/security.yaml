@@ -45,4 +45,5 @@ security:
         - { path: ^/storage-method, roles: ROLE_ADMIN }
         - { path: ^/laboratory, roles: ROLE_ADMIN }
         - { path: ^/container, roles: ROLE_ADMIN }
+        - { path: ^/user, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

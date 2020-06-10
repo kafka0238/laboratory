@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Просмотр пользователя{% endblock %}
+{% block stylesheets %}
+    <link href="{{ asset('style/create.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/form.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('style/tab.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+{% block body %}
+    <div class="wrap">
+        <div class="tab">
+            {% block links %}
+                {% include 'menu.html.twig' with {'selected':'order','isShow':is_show} %}
+            {% endblock %}
+        </div>
+        <div class="container">
+            <h3 class="container__title">Просмотр пользователя:</h3>
+            {#            {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'class': 'form-auth'}}) }}#}
+            {{ form_start(form, {'attr': {'class': 'form-auth'}}) }}
+            {{ form_errors(form) }}
+
+            {{ form_label(form.login, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.login) }}
+            {{ form_widget(form.login, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.password, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.password) }}
+            {{ form_widget(form.password, {'attr': {'class': 'form-auth__input'}}) }}
+
+            {{ form_label(form.rolesId, null, {'label_attr': {'class': 'form-auth__label'}}) }}
+            {{ form_errors(form.rolesId) }}
+            {{ form_widget(form.rolesId, {'attr': {'class': 'form-auth__input'}}) }}
+
+            <div class="form-auth__action-section">
+                {{ form_widget(form.submit, {'label': 'Сохранить', 'attr': {'class': 'action-section__button-auth'} }) }}
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ asset('js/error.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}

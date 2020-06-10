@@ -29,6 +29,10 @@ class User implements UserInterface
     private $roles = [];
 
     /**
+     */
+    private $rolesId;
+
+    /**
      * @var string The hashed password
      * @ORM\Column(type="string")
      */
@@ -76,6 +80,21 @@ class User implements UserInterface
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRolesId(): int
+    {
+        return $this->rolesId;
+    }
+
+    public function setRolesId(int $rolesId): self
+    {
+        $this->rolesId = $rolesId;
 
         return $this;
     }
